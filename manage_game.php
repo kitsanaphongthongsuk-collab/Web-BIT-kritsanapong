@@ -44,9 +44,9 @@ style="width:200px"
 </td>
 <td> <?= $game["type_id"] ?> </td>
 <td>
-<a href="">แก้ไข</a>
-<a href="">ลบ</a>
-<a href="action/delete_game.php?id=<?= $games['game_id'] ?>"></a>
+<a href="edit_game.php?id=<?= $game['game_id'] ?>">แก้ไข</a>
+
+<a href="action/delete_game.php?id=<?= $game['game_id'] ?>">ลบ</a>
 </td>
 </tr>
 <?php
