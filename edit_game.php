@@ -10,22 +10,30 @@
     <?php
         $id = $_GET['id'];
 
-        
-    ?>
+        include 'action/connect.php';
+
+        $sql = "SELECT * FROM games WHERE game_id = '$id' ";
+
+        $result = mysqli_query($con, $sql);
+
+        $game = mysqli_fetch_assoc($result);
+
+        var_dump($game);
+?>
     
-    <form action="action/insert_game.php" method="post">
+    <form action="action/update_game.php" method="post">
 
             <label for="">รหัสเกม</label>
-            <input type="text" name="game_id"> <br>
+            <input type="text" name="game_id" value="<?= $game['game_id']?> "> <br>
 
             <label for="">ชื่อเกม</label>
-            <input type="text" name="game_name"> <br>
+            <input type="text" name="game_name" value="<?= $game['game_name']?> "> <br>
 
             <label for="">ราคา</label>
-            <input type="text" name="game_price"> <br>
+            <input type="text" name="game_price" value="<?= $game['game_price']?> "> <br>
 
             <label for="">ลิ้งก์ภาพปก</label>
-            <input type="text" name="game_cover"> <br>
+            <input type="text" name="game_cover" value="<?= $game['game_cover']?> "> <br>
 
             <?php
                 include 'action/connect.php';
@@ -40,7 +48,12 @@
                 <?php
                         foreach($result as $type){
                             ?>
-                                <option value="<?= $type["type_id"] ?> "> <?= $type["type_name"] ?> </option>
+                                <option 
+                                value="<?= $type["type_id"] ?>"
+                                <?= $type["type_id"] == $game["type_id"] ? "selected": "" ?>
+                                > 
+                                <?= $type["type_name"] ?> 
+                            </option>
                             <?php
                         }
                 ?>
